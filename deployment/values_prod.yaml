@@ -1,0 +1,41 @@
+# Default target environment type
+replicaCount: 2
+
+# Structured application configuration
+config:
+  conjur:
+    accountNames:
+      flagsmithApiKey: flagsmithApiKey
+  application:
+    cob:
+      start: "19:00:00"
+      end: "22:00:00"
+    caas:
+      host: https://caas.kb.cz
+    kbDebugLevel: INFO
+    restLoggingLevel: INFO
+    restLoggingEnabled: true
+    corsAllowedOrigins: https://plus.kb.cz,https://mujklient.kb.cz
+    services:
+      rest:
+        bcServicing:
+          host: https://bc-servicing-v1.prod.leon.kbcloud
+        permission:
+          host: https://pdp.prod.perm.kbcloud/api/governance-engine
+          suppressDetailResponse: true
+        plc:
+          host: https://bc-productlifecycle-v1.prod.leon.kbcloud
+        t24:
+          host: https://ti-leon-servicing.prod.t24.kbcloud/loans
+        positionKeeping:
+          host: https://core-banking.kb.cz
+        prd:
+          host: https://bc-productdefinition-v1.prod.leon.kbcloud
+        nca:
+          host: https://bc-accountservicing-v1.prod.nca.kbcloud
+        pricing:
+          host: http://bc-pricing-v1.prod.leon.kbcloud
+
+secretData:
+  truststore.jks: null
+  keystore.jks: null

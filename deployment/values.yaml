@@ -1,0 +1,281 @@
+# Default target environment type
+environmentName: ${ENV_NAME}
+
+# number of running instances
+# see https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+replicaCount: 2
+
+# 2nd level domain name for isto loadbalancer, defaulted to $applicationId, see https://speed.kb.cz/firststeps/new-application/dns-registration/#1-zalo%C5%BEen%C3%AD-dns-z%C3%B3ny
+domainName: ${applicationId}
+
+# Structured application configuration
+config:
+  conjur:
+    accountNames:
+      trustStore: trustStore
+      keystore: kafkaBusinessKeystore
+      caasClient: leonServCaasClient
+      flagsmithApiKey: flagsmithApiKeyFAT
+      bffPositionKeepingServiceUser: bffPositionKeepingServiceUser
+      services:
+        rest:
+          bcServicing: bffServiceUser
+          ncaServiceUser: ncaServiceUser
+  application:
+    cob:
+      start: {}
+      end: {}
+    caas:
+      jwkSetUri: /openam/oauth2/realms/root/connect/jwk_uri
+      techUserUri: /openam/json/caas/api/technicalUser/v1/token?_action=getToken
+      timeout: 10s
+    kbDebugLevel: INFO
+    corsAllowedOrigins: ""
+    services:
+      rest:
+        bcServicing:
+          host: ""
+          scope: "leon.serv:read,leon.serv:write,leon.serv:bff,leon.cont:read,leon.cont:write,leon.prop:read"
+          timeout:
+            connect: 4s
+            read: 10s
+        permission:
+          host: ""
+          timeout:
+            connect: 4s
+            read: 10s
+          suppressDetailResponse: true
+        plc:
+          host: ""
+          timeout:
+            connect: 4s
+            read: 5s
+        t24:
+          host: ""
+          timeout:
+            connect: 4s
+            read: 5s
+        nca:
+          host: ""
+          timeout:
+            connect: 4s
+            read: 5s
+        positionKeeping:
+          host: ""
+          timeout:
+            connect: 2s
+            read: 10s
+        prd:
+          host: ""
+          timeout:
+            connect: 4s
+            read: 5s
+        pricing:
+          host: ""
+          timeout:
+            connect: 4s
+            read: 5s
+      flagsmith:
+        host: https://flagsmith.kb.cz/api/v1/
+configData:
+  java.opts: "-Xmx350m -Xms80m -XX:MaxMetaspaceSize=160m -Djava.net.preferIPv4Stack=true -agentlib:jdwp=transport=dt_socket,server=y,address=*:8000,suspend=n"
+  db:
+    migration:
+      enabled: false
+
+# Java application.properties
+applicationProperties: |-
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri= {{ .Values.config.application.caas.host }}{{ .Values.config.application.caas.jwkSetUri }}
+  kb.speed.feature.security.jwt.tech.client.base-uri={{ .Values.config.application.caas.host }}{{ .Values.config.application.caas.techUserUri }}
+  kb.speed.feature.security.jwt.tech.client.requestTimeout={{ .Values.config.application.caas.timeout }}
+  kb.speed.feature.security.jwt.tech.client.users.bff-leon-servicing-service-user.scopes={{ .Values.config.application.services.rest.bcServicing.scope }}
+  kb.speed.feature.rest.jax-rs.client.t24Client.key-store.resource={{ index .Values.configData "pf.ssl.keystore.path" }}
+  
+  be.servicing.rest.endpoint={{ .Values.config.application.services.rest.bcServicing.host }}
+  kb.speed.feature.rest.jax-rs.client.servicingBcClient.timeout.connect={{ .Values.config.application.services.rest.bcServicing.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.servicingBcClient.timeout.read={{ .Values.config.application.services.rest.bcServicing.timeout.read }}
+  
+  kb.speed.feature.security.pep.baseUri={{ .Values.config.application.services.rest.permission.host }}
+  kb.speed.feature.security.pep.connect-timeout={{ .Values.config.application.services.rest.permission.timeout.connect }}
+  kb.speed.feature.security.pep.request-timeout={{ .Values.config.application.services.rest.permission.timeout.read }}
+  kb.speed.feature.security.pep.suppress-detail-response={{ .Values.config.application.services.rest.permission.suppressDetailResponse }}
+  
+  be.plc.rest.endpoint={{ .Values.config.application.services.rest.plc.host }}
+  kb.speed.feature.rest.jax-rs.client.plcClient.timeout.connect={{ .Values.config.application.services.rest.plc.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.plcClient.timeout.read={{ .Values.config.application.services.rest.plc.timeout.read }}
+  
+  be.t24.rest.endpoint={{ .Values.config.application.services.rest.t24.host }}
+  kb.speed.feature.rest.jax-rs.client.t24Client.timeout.connect={{ .Values.config.application.services.rest.t24.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.t24Client.timeout.read={{ .Values.config.application.services.rest.t24.timeout.read }}
+  
+  be.nca.rest.endpoint={{ .Values.config.application.services.rest.nca.host }}
+  kb.speed.feature.rest.jax-rs.client.ncaClient.timeout.connect={{ .Values.config.application.services.rest.nca.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.ncaClient.timeout.read={{ .Values.config.application.services.rest.nca.timeout.read }}
+  
+  be.positionKeeping.rest.endpoint={{ .Values.config.application.services.rest.positionKeeping.host }}
+  kb.speed.feature.rest.jax-rs.client.positionKeepingClient.timeout.connect={{ .Values.config.application.services.rest.positionKeeping.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.positionKeepingClient.timeout.read={{ .Values.config.application.services.rest.positionKeeping.timeout.read }}
+
+  be.productDefinitions.rest.endpoint={{ .Values.config.application.services.rest.prd.host }}
+  kb.speed.feature.rest.jax-rs.client.productDefinitionsClient.timeout.connect={{ .Values.config.application.services.rest.prd.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.productDefinitionsClient.timeout.read={{ .Values.config.application.services.rest.prd.timeout.read }}
+  
+  be.pricing.rest.endpoint={{ .Values.config.application.services.rest.pricing.host }}
+  kb.speed.feature.rest.jax-rs.client.pricingClient.timeout.connect={{ .Values.config.application.services.rest.pricing.timeout.connect }}
+  kb.speed.feature.rest.jax-rs.client.pricingClient.timeout.read={{ .Values.config.application.services.rest.pricing.timeout.read }}
+  
+  bff.leon.servicing.cob.start={{ .Values.config.application.cob.start }}
+  bff.leon.servicing.cob.end={{ .Values.config.application.cob.end }}
+  
+  # CORS
+  kb.speed.feature.rest.cors.allowed-origins={{ .Values.config.application.corsAllowedOrigins }}
+  kb.speed.feature.rest.cors.allowed-credentials=false
+  kb.speed.feature.rest.cors.allowed-headers=*
+  kb.speed.feature.rest.cors.allowed-methods=*
+  
+  # rest request/response logging
+  kb.speed.feature.rest.logging.enabled={{ .Values.config.application.restLoggingEnabled }}
+  
+  # flagsmith
+  flagsmith.config.url={{ .Values.config.application.services.flagsmith.host }}
+
+# Java logback.xml
+logbackXml: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <configuration scan="true" scanPeriod="15 minutes">
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+
+    <!-- - - - - - -->
+    <!-- APPENDERS -->
+    <!-- - - - - - -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="cz.kb.speed.logging.CustomLogstashEncoder">
+            <!-- to log logCode attribute in logman index for exceptions and report log lines -->
+            <includeMdcKeyName>logCode</includeMdcKeyName>
+        </encoder>
+    </appender>
+
+    <!-- - - - - -->
+    <!-- LOGGERS -->
+    <!-- - - - - -->
+    <logger name="cz.kb" additivity="false" level="{{ .Values.config.application.kbDebugLevel }}">
+      <appender-ref ref="STDOUT"/>
+    </logger>
+  
+    <logger name="speed.services" level="{{ .Values.config.application.restLoggingLevel }}" additivity="false">
+      <appender-ref ref="STDOUT"/>
+    </logger>
+  
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+  </configuration>
+
+# A Key Value entries that will be mapped into kubernetes secret data. All values must be in base64 format.
+secretData:
+  truststore.jks: null
+  keystore.jks: null
+  pf.ssl.keystore.password: null
+
+# Conjur account variables secrets configuration. https://speed.kb.cz/sdlc/code/secrets-management/secret-management/#configure-microservice
+conjur:
+  enabled: true
+  accounts:
+    map: |-
+      pf.ssl.truststore.password: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.trustStore }}/password'
+      pf.ssl.keystore.password: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.keystore }}/password'
+    templates:
+      security.properties:
+        variables:
+          var.caasClientId: '{{ include "conjur-application-account" . }}-{{ .Values.config.conjur.accountNames.caasClient }}/username'
+          var.caasClientSecret: '{{ include "conjur-application-account" . }}-{{ .Values.config.conjur.accountNames.caasClient }}/password'
+          var.bcServicingUsername: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.services.rest.bcServicing }}/username'
+          var.bcServicingPassword: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.services.rest.bcServicing }}/password'
+          var.ncaServiceUserName: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.services.rest.ncaServiceUser }}/username'
+          var.ncaServiceUserPassword: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.services.rest.ncaServiceUser }}/password'
+          var.flagsmithApiKey: '{{ include "conjur-application-account" . }}-{{ .Values.config.conjur.accountNames.flagsmithApiKey }}/password'
+          var.keystorePassword: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.keystore }}/password'
+          var.leonServPositionKeepingServiceUserName: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.bffPositionKeepingServiceUser }}/username'
+          var.leonServPositionKeepingServiceUserPassword: '{{ include "conjur-component-account" . }}-{{ .Values.config.conjur.accountNames.bffPositionKeepingServiceUser }}/password'
+        template: |
+          kb.speed.feature.security.jwt.tech.client.id={{`{{ secret "var.caasClientId" }}`}}
+          kb.speed.feature.security.jwt.tech.client.secret={{`{{ secret "var.caasClientSecret" }}`}}
+          kb.speed.feature.security.jwt.tech.client.users.bff-leon-servicing-service-user.username={{`{{ secret "var.bcServicingUsername" }}`}}
+          kb.speed.feature.security.jwt.tech.client.users.bff-leon-servicing-service-user.password={{`{{ secret "var.bcServicingPassword" }}`}}
+          kb.speed.feature.security.jwt.tech.client.users.ncaServiceUser.username={{`{{ secret "var.ncaServiceUserName" }}`}}
+          kb.speed.feature.security.jwt.tech.client.users.ncaServiceUser.password={{`{{ secret "var.ncaServiceUserPassword" }}`}}
+          flagsmith.config.apiKey={{`{{ secret "var.flagsmithApiKey" }}`}}
+          kb.speed.feature.rest.jax-rs.client.t24Client.key-store.password={{`{{ secret "var.keystorePassword" }}`}}
+          kb.speed.feature.rest.jax-rs.security.realm.positionKeepingRealm.authentication.user-name={{`{{ secret "var.leonServPositionKeepingServiceUserName" }}`}}
+          kb.speed.feature.rest.jax-rs.security.realm.positionKeepingRealm.authentication.password={{`{{ secret "var.leonServPositionKeepingServiceUserPassword" }}`}}
+
+# resource settings for the Docker container
+# must correlate with the setting JVM
+# see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+resources:
+  requests:
+    memory: 750Mi
+    cpu: '500m'
+  limits:
+    memory: 750Mi
+    cpu: '500m'
+
+annotationsDisableRewriteAppHTTPProbers: true
+
+# Custom metadata.labels which will be passed into kubernetes Deployment, Replica Set, Pod and Service
+labels:
+  componentOwningTeam: SERV
+  environment:  "{{ .Values.environment }}"
+
+# Liveness and Readiness Probe, see https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbePath: /health
+readinessProbePath: /health
+startupProbePath: /health
+
+# for SPEED Spring Boot SDK >= 6.5 you can use more granular probes.
+# for older SDKs (SPEED Spring Boot SDK >= 4) these endpoints can be enabled manually:
+#
+#    management.health.livenessState.enabled=true
+#    management.health.readinessState.enabled=true
+#
+# livenessProbePath: /health/livenessState
+# readinessProbePath: /health/readinessState
+livenessProbe:
+  timeoutSeconds: 20
+  periodSeconds: 30
+  successThreshold: 1
+  failureThreshold: 5
+readinessProbe:
+  timeoutSeconds: 20
+  periodSeconds: 30
+  successThreshold: 1
+  failureThreshold: 5
+startupProbe:
+  timeoutSeconds: 20
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 15
+  initialDelaySeconds: 30
+
+# https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/
+# Use DoNotSchedule or ScheduleAnyway
+topologySpreadConstraints:
+  whenUnsatisfiable: ScheduleAnyway
+
+# Use Always or IfNotPresent
+imagePullPolicy: IfNotPresent
+
+# Defines which extra keys from the secret should be mounted as Volumes do the container
+extraSecretSecurityProperties:
+  - key: security.properties
+    path: security.properties
+  - key: keystore.jks
+    path: keystore.jks
+    
+serviceDebug:
+  enabled: true
+  servicePort: 8000
+  # Fill port used in agentlib address
+  targetPort: 8000
+  # Use unique port for each component
+  nodePort:
