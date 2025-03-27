@@ -1,0 +1,32 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-businessoverdraft-private/termination/v2/query/sign-case-state",
+    "method": "GET",
+    "queryParameters": {
+      "servicingCaseId": {
+        "matches": "^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
+      },
+      "productInstanceId": {
+        "matches": "^\\d+$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "transformerParameters": {
+      "servicingCaseIdToServicingCaseState": {
+        "ff6730bc-4b73-4eb4-bf3a-c7a78d5e4022": "ERROR",
+        "ff6730bc-4b73-4eb4-bf3a-c7a78d5e4021": "IN_PROGRESS"
+      }
+    },
+    "jsonBody": {
+      "signingCaseId": "{{request.query.servicingCaseId}}",
+      "servicingCaseState": "{{lookup parameters.servicingCaseIdToServicingCaseState request.query.servicingCaseId}}"
+    }
+  }
+}

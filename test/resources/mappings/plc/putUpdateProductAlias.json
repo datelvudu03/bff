@@ -1,0 +1,15 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/common/v1/products/11111/cmd/product-alias",
+    "method": "PUT"
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+    }
+  }
+}

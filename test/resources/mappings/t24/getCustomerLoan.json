@@ -1,0 +1,63 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/loans/api/v1.0.0/party/loan/detail",
+    "method": "GET",
+    "queryParameters": {
+      "arrangementId": {
+        "matches": "^CZ\\d{22}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "transformerParameters": {
+      "arrangementIdToResponseBody": {
+        "CZ7601000000000885551183": {
+          "loanAmount": 150000
+        },
+        "CZ7801000000000000000123": {
+          "loanAmount": 150000
+        },
+        "CZ3401000000000121938548": {
+          "loanAmount": 10000
+        }
+      }
+    },
+    "jsonBody": {
+      "header": {
+        "audit": {
+          "T24_time": 270,
+          "responseParse_time": 6,
+          "requestParse_time": 12
+        },
+        "page_start": 1,
+        "page_token": "202407128542368501.01,99",
+        "total_size": 1,
+        "page_size": 99,
+        "status": "success"
+      },
+      "body": [
+        {
+          "loanInterestRate": "10",
+          "loanStartDate": "2024-01-04",
+          "roleDisplayName": "Beneficial Owner",
+          "loanAmount": "{{#assign 'arrangementId'}}{{request.query.arrangementId}}{{/assign}}{{#with (lookup parameters.arrangementIdToResponseBody arrangementId)}}{{loanAmount}}{{/with}}",
+          "loanInterestType": "Single",
+          "productName": "KB Consumer Loans",
+          "loanBalance": -134108.67,
+          "loanNextPayDate": "2024-08-05",
+          "customerShortName": "JOHN JAMESON",
+          "loanProduct": "KB.CONSUMER.LOANS",
+          "loanAccountId": "1000000005680014",
+          "loanCurrency": "CZK",
+          "loanEndDate": "2028-01-04"
+        }
+      ]
+    }
+  }
+}

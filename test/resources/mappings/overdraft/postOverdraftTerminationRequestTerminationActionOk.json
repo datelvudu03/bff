@@ -1,0 +1,21 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-businessoverdraft-private/termination/v2/cmd/request-termination",
+    "method": "POST",
+    "queryParameters": {
+      "productInstanceId": {
+        "matches": "^\\d+$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "servicingCaseId": "018dd0cb-befe-7c9b-a627-0190330e950a"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-operatinalloan-private/v1/query/early-repayment-availability",
+    "method": "GET",
+    "queryParameters": {
+      "timestamp": {
+        "matches": "(.*?)"
+      },
+      "productInstanceId": {
+        "matches": "^\\d+$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "transformerParameters": {
+      "productInstanceIdToBodyAttributes": {
+        "1": {
+          "availability": true,
+          "reasonCode": null
+        },
+        "2": {
+          "availability": false,
+          "reasonCode": "ERR_ALREADY_PAID"
+        },
+        "3": {
+          "availability": false,
+          "reasonCode": "ERR_COB"
+        },
+        "4": {
+          "availability": false,
+          "reasonCode": "ERR_CONFLICT"
+        },
+        "5": {
+          "availability": false,
+          "reasonCode": "ERR_DATE"
+        },
+        "6": {
+          "availability": false,
+          "reasonCode": "ERR_DEBT"
+        },
+        "7": {
+          "availability": false,
+          "reasonCode": "ERR_OVERDUE"
+        },
+        "8": {
+          "availability": false,
+          "reasonCode": "ERR_ALREADY_PAID"
+        }
+      }
+    },
+    "jsonBody" : {
+      "availability": "{{#assign 'productInstanceId'}}{{request.query.productInstanceId}}{{/assign}}{{#with (lookup parameters.productInstanceIdToBodyAttributes productInstanceId)}}{{{availability}}}{{/with}}",
+      "reasonCode": "{{#with (lookup parameters.productInstanceIdToBodyAttributes productInstanceId)}}{{reasonCode}}{{/with}}",
+      "data": {
+        "start": "10:00",
+        "end": "14:00"
+      }
+    }
+  }
+}

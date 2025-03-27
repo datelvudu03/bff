@@ -1,0 +1,211 @@
+{
+  "priority": 1,
+  "request": {
+    "urlPath": "/api/operational-loan/v1/operational-loans/qry/product-data",
+    "method": "GET",
+    "queryParameters": {
+      "productInstanceId": {
+        "equalTo": "123456789"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "transformerParameters": {
+      "productInstanceIdToProduct": {
+        "123456789": {
+          "loanAccount_iban": "CZ7601000000000885551183",
+          "loanAccount_id": "927570893747058703",
+          "loanLimit": -150000,
+          "productInstanceId": "1234567890321",
+          "repaymentAccount_iban": "CZ7801000000279609820237",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "926893923": {
+          "loanAccount_iban": "CZ7601000000000885551183",
+          "loanAccount_id": "927570893747058703",
+          "loanLimit": -150000,
+          "productInstanceId": "1234567890321",
+          "repaymentAccount_iban": "CZ7801000000279609820238",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "1": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "2": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "3": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "4": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "5": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "6": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "7": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "8": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        },
+        "11111": {
+          "loanAccount_iban": "CZ7801000000000000000123",
+          "loanAccount_id": "87678876776677",
+          "loanLimit": 37000,
+          "productInstanceId": "12345",
+          "repaymentAccount_iban": "CZ7801000000000000000123",
+          "repaymentAccount_id": 927570893747058700,
+          "activationDate": null
+        }
+      }
+    },
+    "jsonBody": {
+      "operationalLoanProduct": {
+        "contractDocuments": [
+          {
+            "category": "CONTRACT",
+            "contractDocId": "KBD_1t82jtfgc9",
+            "contractNumber": "98000918695",
+            "docType": "SML_KTK",
+            "signatureDate": "2024-05-31T08:11:08.909Z"
+          }
+        ],
+        "debtor": {
+          "id": "970570944",
+          "idType": "KBID"
+        },
+        "paymentDueDay": {
+          "dayOfMonth": 3
+        },
+        "disbursementAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "CZ7801000000000000000123"
+          },
+          "id": "343434343"
+        },
+        "feeAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban":{
+            "value":"CZ9301000901148159720217"
+          },
+          "id": "33434"
+        },
+        "loanAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "{{#assign 'productInstanceId'}}{{request.query.productInstanceId}}{{/assign}}{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{loanAccount_iban}}{{/with}}"
+          },
+          "id": "{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{loanAccount_id}}{{/with}}"
+        },
+        "loanLimit": {
+          "amount": "{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{loanLimit}}{{/with}}",
+          "currency": {
+            "code": "CZK"
+          }
+        },
+        "loanPurpose":{
+          "text":"Loan for new truck :-)"
+        },
+        "migrated":true,
+        "pricingId": {
+          "id": "ab9a81d2-4cd1-4b05-a4ea-c047af2c282f"
+        },
+        "product": {
+          "productAlias": {
+            "name": "Provozní úvěr Business 222"
+          },
+          "productCode":"OPERATIONAL_LOAN",
+          "productDefinitionId":{
+            "id":"0190bad6-fd43-7e95-81c0-471abbf9eeb7"
+          },
+          "productId": {
+            "id": "0192af8f-54c5-756d-a201-2d500e5a7b2d"
+          },
+          "productInstanceId": "{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{productInstanceId}}{{/with}}",
+          "productState": {
+            "state": "TERMINATED"
+          },
+          "productVersionId": {
+            "id": "0192af8f-601e-7c16-9f14-20a777772332"
+          }
+        },
+        "repaymentAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{repaymentAccount_iban}}{{/with}}"
+          },
+          "id": "{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{repaymentAccount_id}}{{/with}}"
+        },
+        "activationDate": "{{#with (lookup parameters.productInstanceIdToProduct productInstanceId)}}{{activationDate}}{{/with}}"
+      }
+    }
+  }
+}

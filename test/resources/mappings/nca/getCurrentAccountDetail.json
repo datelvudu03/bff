@@ -1,0 +1,62 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/accounts/account-servicing/v1/current-accounts/927570893747058700",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "currentAccount": {
+        "account": {
+          "accountNumber": {
+            "accountNumber": "145583518/0100",
+            "bankCode": "0100",
+            "core": "145583518",
+            "iban": "CZ7401000000000145583518"
+          }
+        },
+        "basicPaymentAccount": false,
+        "currency": "CZK",
+        "currentAccountInstanceActions": [
+          {
+            "name": "Změna názvu účtu",
+            "objectCode": "500065828460"
+          },
+          {
+            "name": "Zrušení účtu",
+            "objectCode": "5016251211"
+          }
+        ],
+        "currentAccountInstanceId": {
+          "id": "617473286679537703"
+        },
+        "currentAccountInstanceState": {
+          "currentAccountInstanceStateCode": {
+            "state": "ACTIVE"
+          }
+        },
+        "customerInCurrentAccountInstances": [
+          {
+            "kBCustomer": {
+              "id": "970697718"
+            },
+            "partyInCurrentAccountInstanceRole": {
+              "partyInCurrentAccountRoleCode": {
+                "code": "OWNER"
+              }
+            }
+          }
+        ],
+        "name": "Účet Business",
+        "soldExactlyOn": "2024-11-29T08:53:12.593937+01:00",
+        "tariffInstance": {
+          "id": "486573286677783403"
+        }
+      }
+    }
+  }
+}

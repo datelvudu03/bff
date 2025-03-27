@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-private/v2/cmd/request-statement",
+    "method": "POST"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "statementId": "019074f2-e3e3-780e-bae3-dad2dc51da4b"
+    }
+  }
+}

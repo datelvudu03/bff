@@ -1,0 +1,67 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPathPattern": "/position-keeping/accounts/(\\w+)/position/balance",
+    "method": "GET",
+    "queryParameters": {
+      "bankCode": {
+        "equalTo": "100"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "transformerParameters": {
+      "accountNumberTransformer": {
+        "279609820237": {
+          "iban": "CZ2901000000279609820237",
+          "accountNumber": 279609820237,
+          "availableBalance": 504372.66
+        },
+        "CZ7801000000000000000123": {
+          "iban": "CZ7801000000000000000123",
+          "accountNumber": 279609820237,
+          "availableBalance": 504372.66
+        },
+        "CZ7801000000279609820237": {
+          "iban": "CZ7801000000279609820237",
+          "accountNumber": 279609820237,
+          "availableBalance": 504372.66
+        },
+        "CZ7801000000279609820238": {
+          "iban": "CZ7801000000279609820238",
+          "accountNumber": 279609820237,
+          "availableBalance": 10000
+        }
+      }
+    },
+    "jsonBody": {
+      "iban": "{{#assign 'accountNumber'}}{{request.path.[2]}}{{/assign}}{{#with (lookup parameters.accountNumberTransformer accountNumber)}}{{iban}}{{/with}}",
+      "accountNumber": "{{#with (lookup parameters.accountNumberTransformer accountNumber)}}{{accountNumber}}{{/with}}",
+      "acctApplNbr": 2,
+      "currencyCode": "EUR",
+      "accountStatus": "A",
+      "holdTotal": 0.00,
+      "applCK": {
+        "currentBalance": 504372.66,
+        "availableBalance": "{{#with (lookup parameters.accountNumberTransformer accountNumber)}}{{availableBalance}}{{/with}}",
+        "todayActivity": 0.00,
+        "businessDate": "2024-02-12",
+        "accountType": "3421",
+        "branch": 1062,
+        "exposure": 12,
+        "exposure2": 6212,
+        "postBalance": 504372.66,
+        "holdFilterGazOnly": 0.00,
+        "holdTotalGazOnly": 0.00,
+        "stmDispFlag": "M",
+        "overdraftLimit": 0.00,
+        "realAuthAmount": 0.00
+      }
+    }
+  }
+}

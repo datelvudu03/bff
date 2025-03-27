@@ -1,0 +1,44 @@
+{
+  "priority": 100,
+  "request": {
+    "method": "GET",
+    "urlPath": "/loans/api/v1.0.0/party/loan/simulation/schedule/details",
+    "queryParameters": {
+      "arrangementId": {
+        "equalTo": "CZ3401000000000121938548"
+      },
+      "simulationId": {
+        "equalTo": "AASIMR2429921TDDH0"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "header": {
+        "audit": {
+          "T24_time": 74,
+          "responseParse_time": 4,
+          "requestParse_time": 9
+        },
+        "page_start": 1,
+        "page_token": "202410280611872315.01,99",
+        "total_size": 1,
+        "page_size": 99,
+        "status": "success"
+      },
+      "body": [
+        {
+          "totalOsAmount": "-9,900.00",
+          "totalInterestAmount": "284.74",
+          "simulationRef": "AASIMR2429921TDDH0",
+          "scheduleDate": "20250115",
+          "futureScheduleCount": "3"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "priority": 99,
+  "request": {
+    "urlPath": "/api/operational-loan/v1/operational-loans/qry/product-data",
+    "method": "GET",
+    "queryParameters": {
+      "productInstanceId": {
+        "equalTo": "123456"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "operationalLoanProduct": {
+        "contractDocuments": [
+          {
+            "category": "CONTRACT",
+            "contractDocId": "KBD_1t82jtfgc9",
+            "contractNumber": "98000918695",
+            "docType": "SML_KTK",
+            "signatureDate": "2024-05-31T08:11:08.909Z"
+          }
+        ],
+        "debtor": {
+          "id": "970570944",
+          "idType": "KBID"
+        },
+        "disbursementAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "CZ7801000000000000000123"
+          },
+          "id": "343434343"
+        },
+        "feeAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "23"
+          },
+          "id": "33434"
+        },
+        "loanAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "CZ7801000000000000000123"
+          },
+          "id": "87678876776677"
+        },
+        "loanLimit": {
+          "amount": 37000,
+          "currency": {
+            "code": "CZK"
+          }
+        },
+        "loanPurpose": {
+          "text": "TEST"
+        },
+        "product": {
+          "productAlias": {
+            "name": "Provozní úvěr Business 222"
+          },
+          "productId": {
+            "id": "0192af8f-54c5-756d-a201-2d500e5a7b2d"
+          },
+          "productInstanceId": "12345",
+          "productState": {
+            "state": "TERMINATED"
+          },
+          "productVersionId": {
+            "id": "0192af8f-601e-7c16-9f14-20a777772332"
+          }
+        },
+        "repaymentAccount": {
+          "currency": {
+            "code": "CZK"
+          },
+          "iban": {
+            "value": "CZ7801000000000000000123"
+          },
+          "id": "927570893747058700"
+        },
+        "activationDate": {
+          "date": "2024-06-11T18:53:53.419Z"
+        }
+      }
+    }
+  }
+}

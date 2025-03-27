@@ -1,0 +1,26 @@
+{
+  "priority": 99,
+  "request": {
+    "urlPath": "/api/servicing-operatinalloan-private/v1/query/early-repayment-availability",
+    "method": "GET",
+    "queryParameters": {
+      "timestamp": {
+        "matches": "(.*?)"
+      },
+      "productInstanceId": {
+        "equalTo": "1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "availability": true,
+      "reasonCode": null,
+      "data": null
+    }
+  }
+}

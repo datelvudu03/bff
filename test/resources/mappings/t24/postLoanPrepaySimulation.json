@@ -1,0 +1,38 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/loans/api/v1.0.0/party/loan/prepay/simulation",
+    "method": "POST"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "header": {
+        "transactionStatus": "Live",
+        "audit": {
+          "T24_time": 230,
+          "responseParse_time": 4,
+          "requestParse_time": 7,
+          "versionNumber": "1"
+        },
+        "id": "AASIMR2429921TDDH0",
+        "status": "success",
+        "uniqueIdentifier": "IRACCS242999372559738.00"
+      },
+      "body": {
+        "arrangement": "AA24289Z8QPR",
+        "transactionActivity": "LENDING-APPLYPAYMENT-PR.CURRENT.BALANCES",
+        "simRunDate": "20241025",
+        "simEndDate": "20241025",
+        "transactionAmount": "100",
+        "description": "Lending Preclosure API",
+        "runAct": "YES",
+        "executionSim": "NO",
+        "simTDate": "20241025"
+      }
+    }
+  }
+}

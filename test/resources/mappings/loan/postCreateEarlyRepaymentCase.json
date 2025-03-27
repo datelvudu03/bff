@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-operatinalloan-private/v1/cases/cmd/create-early-repayment-case",
+    "method": "POST"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody" : {
+      "servicingCaseId": "0192b4c5-7a04-715e-8b4c-2881a685d7de"
+    }
+  }
+}

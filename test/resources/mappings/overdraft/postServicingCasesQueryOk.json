@@ -1,0 +1,36 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-private/v2/servicing-cases/qry/servicing-cases",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.productInstanceId",
+          "contains": "926893922"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cases": [
+        {
+          "id": "ff6730bc-4b73-4eb4-bf3a-c7a78d5e4022",
+          "terminationDate": "2025-01-01",
+          "type": "BANK_OVERDRAFT_TERMINATION",
+          "state": "WAITING_FOR_REALIZATION"
+        },
+        {
+          "id": "2445c143-e523-4506-b2ec-5f2ae896a5c6",
+          "type": "CLIENT_OVERDRAFT_TERMINATION",
+          "state": "TERMINATING"
+        }
+      ]
+    }
+  }
+}

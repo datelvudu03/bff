@@ -1,0 +1,31 @@
+{
+  "priority": 99,
+  "request": {
+    "urlPath": "/api/v1/pricing/pricing-collection/ab9a81d2-4cd1-4b05-a4ea-c047af2c282f/query/v1/fees-detail",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "fees": [
+        {
+          "feeCode": "MAINTENANCE_FEE",
+          "feeAmount": {
+            "amount": "500.01",
+            "currency": "CZK"
+          },
+          "individualized": true,
+          "feeObjectCode": "string",
+          "serviceObjectCode": "string",
+          "feeRange": {
+            "order": 1,
+            "rangeObjectCode": "string"
+          }
+        }
+      ]
+    }
+  }
+}

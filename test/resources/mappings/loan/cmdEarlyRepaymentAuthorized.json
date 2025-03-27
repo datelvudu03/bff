@@ -1,0 +1,13 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-operatinalloan-private/v1/cases/2f15ffcd-ddc4-47ef-a175-37ea54c97ae9/cmd/early-repayment-authorized",
+    "method": "POST"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

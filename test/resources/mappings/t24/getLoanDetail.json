@@ -1,0 +1,71 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/loans/api/v1.0.0/party/loan/arrangement/detail",
+    "method": "GET",
+    "queryParameters": {
+      "arrangementId": {
+        "matches": "^CZ\\d{22}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "header": {
+        "audit": {
+          "T24_time": 774,
+          "responseParse_time": 4,
+          "requestParse_time": 6
+        },
+        "page_start": 1,
+        "page_token": "202410151437140312.01,99",
+        "total_size": 1,
+        "page_size": 99,
+        "status": "success"
+      },
+      "body": [
+        {
+          "arrangementId": "AA24289Z8QPR",
+          "nextPaymentDate": "2024-11-15",
+          "maturesIn": "3 Months",
+          "maturityDate": "2025-01-15",
+          "schedules": [
+            {
+              "dueScheduleCount": "1",
+              "schedulePaymentType": "Disburse Percentage|Constant Repayment|Interest|Charge Payment",
+              "schedulePaymentMethod": "Payment|Due|Due|Due",
+              "scheduleProperty": "Account|Account",
+              "paidScheduleCount": "1",
+              "futureScheduleCount": "3",
+              "schedulePaymentAmount": "100%|5087.00||",
+              "schedulePaymentFrequency": "on the Start Date |Monthly on day 15|Monthly on day 15|Monthly on day 15"
+            },
+            {
+              "scheduleProperty": "Principal Interest|Principal Interest|PPI FEE"
+            }
+          ],
+          "lastPayment": "2025-01-15",
+          "term": "3 Months",
+          "currencyId": "CZK",
+          "interests": [
+            {
+              "interestRate": "13.8%|12.75% (Loan Base Rate  + 8%)",
+              "rateType": "Fixed|Variable",
+              "tierType": "SINGLE|SINGLE",
+              "interestProperty": "PRINCIPALINT|PENALTYINT",
+              "effectiveRate": "13.8|12.75",
+              "interestPropertyName": "Principal Interest|Penalty Interest"
+            }
+          ],
+          "startDate": "2024-10-15",
+          "nextPaymentAmount": 115555,
+          "payoffRequest": "Y"
+        }
+      ]
+    }
+  }
+}

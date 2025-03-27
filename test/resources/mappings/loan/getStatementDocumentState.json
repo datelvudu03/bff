@@ -1,0 +1,16 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-private/v1/statements/01907751-6fc8-7047-9766-ac92dfe451cf/qry/generating-state",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody" : {
+      "state": "GENERATING"
+    }
+  }
+}

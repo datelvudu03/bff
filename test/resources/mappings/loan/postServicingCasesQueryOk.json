@@ -1,0 +1,30 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-private/v2/servicing-cases/qry/servicing-cases",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.productInstanceId",
+          "contains": "123456789"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cases": [
+        {
+          "id": "ff6730bc-4b73-bf3a-4eb4-c7a78d5e4022",
+          "type": "OPERATION_LOAN_EARLY_REPAYMENT",
+          "state": "STARTED"
+        }
+      ]
+    }
+  }
+}

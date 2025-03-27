@@ -1,0 +1,30 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-businessoverdraft-private/termination/v2/query/confirmation-screen-data",
+    "method": "GET",
+    "queryParameters": {
+      "productInstanceId": {
+        "matches": "^\\d+$"
+      },
+      "servicingCaseId": {
+        "equalTo": "bb9f9f30-3aee-49a5-b6c1-26a51249a5e1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "code": "SIGNED",
+      "servicingCaseId": "bb9f9f30-3aee-49a5-b6c1-26a51249a5e1",
+      "data": {
+        "key1": "value1",
+        "key2": "value2",
+        "key3": "value3"
+      }
+    }
+  }
+}

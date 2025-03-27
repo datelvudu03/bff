@@ -1,0 +1,180 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPathPattern": "/api/product-definitions/v1/product-definitions/(.*)/query/definition-data",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "basicParams": {
+        "deeplinkApplicationCode": "business-overdraft-init-screen",
+        "deeplinkDetailCode": "business-overdraft-init-screen",
+        "loanAmountMax": 100000,
+        "loanAmountMin": 10000,
+        "loanCurrency": "CZK",
+        "pcpCatalogueProductInOfferId": "240802102222025951",
+        "pcpCatalogueProductInOfferObjectCode": "2012302752",
+        "pcpOfferId": "240802105541630516",
+        "pcpOfferObjectCode": "30120535272",
+        "productCode": "BUSINESS_OVERDRAFT",
+        "productDefinitionId": "0190bad6-fd43-7e95-81c0-471abbf9eeb7",
+        "productNameCz": "Kontokorent Business",
+        "productNameEn": "Overdraft Business",
+        "productParameters": {
+          "repaymentType": {},
+          "technicalMaturityInterval": 12
+        },
+        "riskCluster": "AUDEB",
+        "riskClusterVersionTree": "1.0.0",
+        "validFrom": "2024-01-01"
+      },
+      "interestRates": [
+        {
+          "rateCode": "SOVRD",
+          "rateType": "FIX"
+        }
+      ],
+      "templates": [
+        {
+          "apocIdentity": {
+            "clientId": "A07AKM",
+            "clientIdType": "KBUID",
+            "jobFunction": "výkonný ředitel pro Retailové bankovnictví",
+            "name": "Marek",
+            "surname": "Vosátka",
+            "title": "Ing."
+          },
+          "dmsProcessDefinitionId": "ABD7D64A-C821-46D0-BA4B-B29D25424D9B",
+          "docType": "SML_KTK",
+          "documentSignExpirationLimit": 5,
+          "durableMedium": true,
+          "exsTemplateId": "SML_KTK",
+          "mscDefinitionId": "bfc",
+          "name": "Smlouva k business kontokorentu",
+          "npdTemplates": [
+            {
+              "docType": "INF_CENIK_B_ZSD",
+              "durableMedium": true,
+              "name": "Ceník produktů a služeb pro fyzické osoby podnikatele a právnické osoby - změny",
+              "order": 10
+            },
+            {
+              "docType": "PODM_UV_B_ZSD",
+              "durableMedium": true,
+              "name": "Úvěrové podmínky pro fyzické osoby podnikatele a právnické osoby - změny",
+              "order": 2
+            },
+            {
+              "docType": "PODM_VOP_ZSD",
+              "durableMedium": true,
+              "name": "Všeobecné obchodní podmínky - změny",
+              "order": 4
+            },
+            {
+              "docType": "INF_POR_POH_ZSD",
+              "durableMedium": true,
+              "name": "Pravidla časového pořadí úhrad pohledávek - změny",
+              "order": 6
+            },
+            {
+              "docType": "OZN_US_B_ZSD",
+              "durableMedium": true,
+              "name": "Oznámení o úrokových sazbách pro podnikatele municipality a veřejný sektor - změny",
+              "order": 8
+            },
+            {
+              "docType": "INF_CENIK_B",
+              "durableMedium": true,
+              "name": "Ceník produktů a služeb pro fyzické osoby podnikatele a právnické osoby",
+              "order": 9
+            },
+            {
+              "docType": "PODM_UV_B",
+              "durableMedium": true,
+              "name": "Úvěrové podmínky pro fyzické osoby podnikatele a právnické osoby",
+              "order": 1
+            },
+            {
+              "docType": "NPD_VOPKB",
+              "durableMedium": true,
+              "name": "Všeobecné obchodní podmínky",
+              "order": 3
+            },
+            {
+              "docType": "INF_POR_POH",
+              "durableMedium": true,
+              "name": "Pravidla časového pořadí úhrad pohledávek",
+              "order": 5
+            },
+            {
+              "docType": "OZN_US",
+              "durableMedium": false,
+              "name": "Oznámení o úrokových sazbách",
+              "order": 7
+            }
+          ],
+          "templateTypeCode": "CONTR"
+        },
+        {
+          "dmsProcessDefinitionId": "F2EADD3D-0645-4D7D-A63D-2CF6EBD13C7B",
+          "docType": "ZAD_UVER",
+          "documentSignExpirationLimit": 1,
+          "durableMedium": true,
+          "name": "Žádost o úvěr",
+          "npdTemplates": [],
+          "templateTypeCode": "APPL"
+        },
+        {
+          "dmsProcessDefinitionId": "864F92A8-C316-4E88-A23C-BDEFEA17E5B4",
+          "docType": "VYP_SML_KTK",
+          "documentSignExpirationLimit": 5,
+          "durableMedium": true,
+          "exsTemplateId": "SML_VYP",
+          "name": "Výpověď smlouvy o kontokorentu",
+          "npdTemplates": [],
+          "templateTypeCode": "DENOUN"
+        },
+        {
+          "apocIdentity": {
+            "clientId": "A07AKM",
+            "clientIdType": "KBUID",
+            "jobFunction": "výkonný ředitel pro Retailové bankovnictví",
+            "name": "Marek",
+            "surname": "Vosátka",
+            "title": "Ing."
+          },
+          "dmsProcessDefinitionId": "864F92A8-C316-4E88-A23C-BDEFEA17E5B4",
+          "docType": "OZN_PORUSENI",
+          "documentSignExpirationLimit": 5,
+          "durableMedium": true,
+          "name": "Uplatnění úvěrových opatření banky",
+          "npdTemplates": [],
+          "templateTypeCode": "NOTIF"
+        },
+        {
+          "apocIdentity": {
+            "clientId": "A07AKM",
+            "clientIdType": "KBUID",
+            "jobFunction": "výkonný ředitel pro Retailové bankovnictví",
+            "name": "Marek",
+            "surname": "Vosátka",
+            "title": "Ing."
+          },
+          "dmsProcessDefinitionId": "864F92A8-C316-4E88-A23C-BDEFEA17E5B4",
+          "docType": "VYP_SML_KTK",
+          "documentSignExpirationLimit": 5,
+          "durableMedium": true,
+          "exsTemplateId": "SML_VYPB",
+          "mscDefinitionId": "apoc",
+          "name": "Výpověď smlouvy o kontokorentním úvěru bankou",
+          "npdTemplates": [],
+          "templateTypeCode": "DENOUN"
+        }
+      ]
+    }
+  }
+}

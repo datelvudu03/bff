@@ -1,0 +1,50 @@
+{
+  "priority": 100,
+  "request": {
+    "urlPath": "/api/servicing-businessoverdraft-private/screenData/v1/query/product-detail-screen-data",
+    "method": "GET",
+    "queryParameters": {
+      "productId": {
+        "equalTo": "926893922"
+      },
+      "language": {
+        "equalTo": "cs"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "productId": 123456789012345678,
+      "accountNumber": {
+        "prefix": "27",
+        "core": "9609820237",
+        "bankCode": "0100"
+      },
+      "iban": "CZ2901000000279609820237",
+      "accountId": "927570893747058700",
+      "accountAlias": "Kontokorent (PRD)",
+      "accountAliasLong": "Kontokorent (PRD)",
+      "debtorId": "926893922",
+      "debtorIdScheme": "KBID",
+      "withdrawnAmount": {
+        "amount": 0,
+        "currency": "CZK"
+      },
+      "remainingAmount": {
+        "amount": 100000,
+        "currency": "CZK"
+      },
+      "limitAmount": {
+        "amount": 100000,
+        "currency": "CZK"
+      },
+      "loanRate": 17.99,
+      "withdrawnFlag": false,
+      "activeTerminationCaseFlag": false
+    }
+  }
+}

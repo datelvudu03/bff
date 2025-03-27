@@ -1,0 +1,24 @@
+{
+  "priority": 1,
+  "request": {
+    "urlPath": "/openam/json/caas/api/technicalUser/v1/token",
+    "method": "POST",
+    "queryParameters": {
+      "_action": {
+        "equalTo": "getToken"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "jsonBody": {
+      "access_token": "eyJ0eXAiOiJKV1QiLCJraWQiOiJ3VTNpZklJYUxPVUFSZVJCL0ZHNmVNMVAxUU09IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJLQklEPTk3MDA2NDg4MSIsImF1ZGl0VHJhY2tpbmdJZCI6ImQ3NDEyZmU1LWZlNzMtNDk0NS1iNzljLTBiYWYwMTI3MTI1ZCIsImlzcyI6Imh0dHBzOi8vc3RhZ2UtY2Fhcy5rYi5jei9vcGVuYW0vb2F1dGgyIiwidG9rZW5OYW1lIjoiYWNjZXNzX3Rva2VuIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImF1dGhHcmFudElkIjoiNmFjYzc2MWUtYTg2ZS00ZGI1LTg1OGEtZGUwZmZiMzQyMzQxIiwiYXVkIjpbIjEyMzU0NiJdLCJhdXRoX3RpbWUiOjE3MDg1ODMxODcyOTAsInNjb3BlIjpbIm11amtsaWVudF93ZWIiXSwicmVhbG0iOiIvIiwiZXhwIjoxNzIxNjI1OTg3Mzc0LCJpYXQiOjE3MDg1ODMxODczNzQsImV4cGlyZXNfaW4iOjE3MjE2MjU5ODczNzR9.O3KqaF_c1p8dkfx-8kl4DuJgBtJw8WqYtwPuy2w4ecK6bjDJctWfOKyKM8BcQA5qZ4yqtW3HyxSAEPO14LRfT5SUI2k8JlZgwAuBPFrkzYJK-qUX-jl28xe6NydB3R9T9Wj4YK_0g5J_w5gaaiJ4WGuwE82MCx4GQhkQwjgvy_YgnwmKhQXNku4l4ZfWogy9Z7VUhQQtesG0o9GpXHDedtTNH9-zCG_bXWU470e46-dI2-d9q7uOYckzfQMoKqH791cdznwSdWc2d0v1s5osBM17q5_QHan-OuHbcKofnODxpPyq12Ws6pBx_1mt9-RNNRhtJ8CRDvfqC7U-pJflnQ",
+      "issued_token_type": "urn:ietf:params:oauth:token-type:access_token",
+      "token_type": "Bearer",
+      "scope": "perm_pip_read"
+    }
+  }
+}

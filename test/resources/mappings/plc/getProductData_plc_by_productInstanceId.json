@@ -1,0 +1,73 @@
+{
+  "priority": 100,
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/business-overdraft/v1/overdrafts/qry/product-data",
+    "queryParameters": {
+      "productInstanceId": {
+        "matches": "^(\\d+)$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "overdraftProduct": {
+        "product": {
+          "productAlias": {
+            "name": "Provozní úvěr Business 222"
+          },
+          "productId": {
+            "id": "0190bfa2-0d39-782b-8673-6c5c02419328"
+          },
+          "productVersionId": {
+            "id": "0190bfa2-0d39-770d-94c0-a4757c5faac0"
+          },
+          "productInstanceId": "{{request.query.productInstanceId}}",
+          "productDefinitionId": {
+            "id": "ab9a81d2-4cd1-4b05-a4ea-c047af2c282f"
+          },
+          "productState": {
+            "state": "ACTIVATED"
+          },
+          "businessName": {
+            "cs": "Business kontokorent",
+            "en": "Business overdraft"
+          },
+          "catalogueProductInOfferObjectCode": "2012302752"
+        },
+        "loanLimit": {
+          "amount": 100000,
+          "currency": {
+            "code": "CZK"
+          }
+        },
+        "currentAccount": {
+          "id": "927570893747058700",
+          "iban": {
+            "value": "CZ2901000000279609820237"
+          },
+          "currency": {
+            "code": "CZK"
+          }
+        },
+        "debtor": {
+          "id": "926893922",
+          "idType": "KBID"
+        },
+        "contractDocuments": [
+          {
+            "docType": "SML_KTK",
+            "contractDocId": "KBD_1t6nbwxjfy",
+            "contractNumber": "12345",
+            "signatureDate": "2024-06-11T18:53:53.419Z"
+          }
+        ]
+      }
+    }
+  }
+}
